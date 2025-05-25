@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Attendance System{% endblock %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{ total_employees }}</h3>
+        <p>Total Employees</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <a href="{% url 'employee_list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{ total_users }}</h3>
+        <p>Registered Users</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{ today_attendance }}</h3>
+        <p>Today's Attendance</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-calendar-day"></i>
+      </div>
+      <a href="{% url 'attendance_list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>{{ weekly_attendance }}</h3>
+        <p>Weekly Attendance</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-calendar-week"></i>
+      </div>
+      <a href="{% url 'attendance_list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-edit mr-1"></i>
+          Manage System
+        </h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="{% url 'employee_list' %}" class="btn btn-primary btn-lg btn-block mb-3">
+              <i class="fas fa-users mr-1"></i> Employees
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="{% url 'attendance_list' %}" class="btn btn-info btn-lg btn-block mb-3">
+              <i class="fas fa-calendar-check mr-1"></i> Attendance
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+{% endblock %} 

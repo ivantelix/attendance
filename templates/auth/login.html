@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}Login | Attendance System{% endblock %}
+
+{% block extra_css %}
+<style>
+  body {
+    overflow: hidden;
+    background: none;
+  }
+  .login-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .login-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://source.unsplash.com/random/1920x1080/?office,work') center/cover no-repeat;
+    filter: blur(8px);
+    z-index: -1;
+  }
+  .login-box {
+    width: 380px;
+    margin: 0 auto;
+    z-index: 10;
+  }
+  .login-card-body {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  .login-logo {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+</style>
+{% endblock %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block wrapper %}
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      Attendance System
+    </div>
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <div class="input-group">
+              <input type="text" name="username" class="form-control" placeholder="Username" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <div class="input-group">
+              <input type="password" name="password" class="form-control" placeholder="Password" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}{% endblock %} 

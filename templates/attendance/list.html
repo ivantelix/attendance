@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance Records | Attendance System{% endblock %}
+
+{% block page_title %}Attendance Records{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Attendance List</h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Employee</th>
+          <th>Clock In</th>
+          <th>Clock Out</th>
+          <th>Duration</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for attendance in attendances %}
+        <tr>
+          <td>{{ attendance.id }}</td>
+          <td>{{ attendance.employee_name }}</td>
+          <td>{% if attendance.clock_in %}{{ attendance.clock_in|date:"d-m-Y H:i:s" }}{% else %}Not clocked in{% endif %}</td>
+          <td>{% if attendance.clock_out %}{{ attendance.clock_out|date:"d-m-Y H:i:s" }}{% else %}Not clocked out{% endif %}</td>
+          <td>{% if attendance.duration %}{{ attendance.duration }}{% else %}N/A{% endif %}</td>
+          <td>{{ attendance.description|truncatewords:10 }}</td>
+          <td>
+            <a href="{% url 'attendance_detail' attendance.id %}" class="btn btn-info btn-sm">
+              <i class="fas fa-eye"></i>
+            </a>
+            {% comment %} <a href="{% url 'attendance_edit' attendance.id %}" class="btn btn-primary btn-sm">
+              <i class="fas fa-edit"></i>
+            </a> {% endcomment %}
+            <a href="{% url 'attendance_delete' attendance.id %}" class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center">No attendance records found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->
+{% endblock %} 

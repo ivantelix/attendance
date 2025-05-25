@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Employee | Attendance System{% endblock %}
+
+{% block page_title %}Delete Employee{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-header bg-danger">
+        <h3 class="card-title">Confirm Deletion</h3>
+      </div>
+      <div class="card-body">
+        <p class="lead">Are you sure you want to delete the employee <strong>{{ employee.names }}</strong>?</p>
+        <p><strong>Warning:</strong> This action cannot be undone. This will permanently delete the employee and their user account.</p>
+        
+        <div class="alert alert-warning">
+          <h5><i class="icon fas fa-exclamation-triangle"></i> Important!</h5>
+          <p>Deleting this employee will also delete the associated user account and all related attendance records.</p>
+        </div>
+        
+        <div class="mt-4">
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'employee_detail' employee.id %}" class="btn btn-secondary">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

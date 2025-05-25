@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Employee Details | Attendance System{% endblock %}
+
+{% block page_title %}Employee Details{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Employee Information</h3>
+        <div class="card-tools">
+          <a href="{% url 'employee_edit' employee.id %}" class="btn btn-primary btn-sm">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <a href="{% url 'employee_delete' employee.id %}" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Delete
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Personal Information</h4>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <tr>
+                    <th style="width: 30%">Full Name</th>
+                    <td>{{ employee.names }}</td>
+                  </tr>
+                  <tr>
+                    <th>Document</th>
+                    <td>{{ employee.document }}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone</th>
+                    <td>{{ employee.phone }}</td>
+                  </tr>
+                  <tr>
+                    <th>Position</th>
+                    <td>{{ employee.position }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">System Information</h4>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <tr>
+                    <th style="width: 30%">Username</th>
+                    <td>{{ employee.user.username }}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>{{ employee.user.email }}</td>
+                  </tr>
+                  <tr>
+                    <th>Check-in Time</th>
+                    <td>{{ employee.check_in_time }}</td>
+                  </tr>
+                  <tr>
+                    <th>Check-out Time</th>
+                    <td>{{ employee.check_out_time }}</td>
+                  </tr>
+                  <tr>
+                    <th>Created at</th>
+                    <td>{{ employee.created_at }}</td>
+                  </tr>
+                  <tr>
+                    <th>Last updated</th>
+                    <td>{{ employee.updated_at }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'employee_list' %}" class="btn btn-secondary">Back to List</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

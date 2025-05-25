@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance Details | Attendance System{% endblock %}
+
+{% block page_title %}Attendance Details{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Attendance Information</h3>
+        <div class="card-tools">
+          {% comment %} <a href="{% url 'attendance_edit' attendance.id %}" class="btn btn-primary btn-sm">
+            <i class="fas fa-edit"></i> Edit
+          </a> {% endcomment %}
+          <a href="{% url 'attendance_delete' attendance.id %}" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Delete
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th style="width: 30%">Employee</th>
+            <td>{{ attendance.employee_name }}</td>
+          </tr>
+          <tr>
+            <th>Username</th>
+            <td>{{ attendance.user.username }}</td>
+          </tr>
+          <tr>
+            <th>Clock In</th>
+            <td>{% if attendance.clock_in %}{{ attendance.clock_in|date:"d-m-Y H:i:s" }}{% else %}Not clocked in{% endif %}</td>
+          </tr>
+          <tr>
+            <th>Clock Out</th>
+            <td>{% if attendance.clock_out %}{{ attendance.clock_out|date:"d-m-Y H:i:s" }}{% else %}Not clocked out{% endif %}</td>
+          </tr>
+          <tr>
+            <th>Duration</th>
+            <td>{% if attendance.duration %}{{ attendance.duration }}{% else %}N/A{% endif %}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>{{ attendance.description|default:"No description provided." }}</td>
+          </tr>
+          <tr>
+            <th>Created at</th>
+            <td>{{ attendance.created_at|date:"d-m-Y H:i:s" }}</td>
+          </tr>
+          <tr>
+            <th>Last updated</th>
+            <td>{{ attendance.updated_at|date:"d-m-Y H:i:s" }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'attendance_list' %}" class="btn btn-secondary">Back to List</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
